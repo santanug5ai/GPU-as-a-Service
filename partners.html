@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Programs - GPUaaS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a1a; background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
+        header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(102,126,234,.5); }
+        nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 8px 20px rgba(245,87,108,.4); }
+        .logo-text { color: white; font-size: 2rem; font-weight: 800; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: all .3s; }
+        .nav-links a:hover { color: #f5576c; }
+        .login-btn { background: linear-gradient(135deg, #f093fb, #f5576c); padding: .7rem 1.8rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(245,87,108,.4); }
+        
+        .page-header { background: linear-gradient(135deg, #1e3c72, #2a5298, #7e22ce); color: white; padding: 100px 2rem 80px; text-align: center; }
+        .page-header h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.3rem; color: rgba(255,255,255,.95); }
+        
+        section { padding: 80px 2rem; }
+        .section-content { max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.8rem; color: white; margin-bottom: 1rem; font-weight: 800; }
+        .section-subtitle { text-align: center; font-size: 1.2rem; color: rgba(255,255,255,.95); margin-bottom: 3rem; }
+        
+        .partner-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .tier-card { background: white; border-radius: 20px; padding: 3rem 2.5rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.15); transition: all .3s; }
+        .tier-card:hover { transform: translateY(-15px); box-shadow: 0 20px 50px rgba(0,0,0,.25); }
+        .tier-icon { width: 100px; height: 100px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; font-size: 3rem; box-shadow: 0 10px 30px rgba(245,87,108,.3); }
+        .tier-card h3 { font-size: 2rem; margin-bottom: 1rem; color: #667eea; font-weight: 800; }
+        .tier-benefits { list-style: none; text-align: left; margin: 2rem 0; }
+        .tier-benefits li { padding: .8rem 0 .8rem 2rem; position: relative; border-bottom: 1px solid #f0f0f0; color: #555; }
+        .tier-benefits li:before { content: '✓'; position: absolute; left: 0; color: #f5576c; font-weight: bold; font-size: 1.3rem; }
+        .tier-btn { display: inline-block; width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 30px; font-weight: 600; transition: all .3s; box-shadow: 0 4px 15px rgba(102,126,234,.3); text-align: center; }
+        .tier-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,.5); }
+        
+        footer { background: linear-gradient(135deg, #2d3561, #1f2a50); color: white; padding: 3rem 2rem 1rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-section h4 { font-size: 1.3rem; margin-bottom: 1rem; color: #f5576c; font-weight: 700; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: .7rem; }
+        .footer-section a { color: #ccc; text-decoration: none; transition: all .3s; }
+        .footer-section a:hover { color: #f5576c; padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.1); color: #999; }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">⚡</div>
+                <span class="logo-text">GPUaaS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="partners.html">Partner Programs</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Partner with GPUaaS</h1>
+        <p>Join our growing partner ecosystem and unlock new revenue opportunities</p>
+    </section>
+
+    <section style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+        <div class="section-content">
+            <h2 class="section-title">Partnership Tiers</h2>
+            <p class="section-subtitle">Choose the partnership level that fits your business</p>
+
+            <div class="partner-tiers">
+                <div class="tier-card">
+                    <div class="tier-icon">🤝</div>
+                    <h3>Referral Partner</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Earn commissions by referring customers</p>
+                    <ul class="tier-benefits">
+                        <li>20% recurring commission on all referrals</li>
+                        <li>Dedicated partner dashboard with analytics</li>
+                        <li>Marketing materials and co-branding assets</li>
+                        <li>Monthly payouts via bank transfer</li>
+                        <li>Partner support team assistance</li>
+                    </ul>
+                    <a href="#" class="tier-btn">Apply Now</a>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-icon">💼</div>
+                    <h3>Reseller Partner</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Resell GPUaaS under your brand</p>
+                    <ul class="tier-benefits">
+                        <li>Up to 35% margin on all sales</li>
+                        <li>White-label platform options</li>
+                        <li>Priority technical support 24/7</li>
+                        <li>Sales enablement and training programs</li>
+                        <li>Lead generation support from our team</li>
+                    </ul>
+                    <a href="#" class="tier-btn">Apply Now</a>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-icon">🏆</div>
+                    <h3>Strategic Partner</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Deep integration and co-innovation</p>
+                    <ul class="tier-benefits">
+                        <li>Custom revenue share model negotiated</li>
+                        <li>Joint go-to-market strategy development</li>
+                        <li>Dedicated partner success manager</li>
+                        <li>Product roadmap influence and early access</li>
+                        <li>Enterprise deal registration program</li>
+                    </ul>
+                    <a href="#" class="tier-btn">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: linear-gradient(135deg, #4facfe, #00f2fe); text-align: center;">
+        <div class="section-content">
+            <h2 class="section-title">Explore Partnership Resources</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div style="background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.1);">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">Partner Portal</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Access marketing materials</p>
+                    <a href="https://partner.nvidia.com/" target="_blank" style="display: inline-block; padding: .8rem 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600;">Visit →</a>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.1);">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">Partner Program</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Learn about NVIDIA partners</p>
+                    <a href="https://www.nvidia.com/en-us/partners/" target="_blank" style="display: inline-block; padding: .8rem 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600;">Visit →</a>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.1);">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">Contact Sales</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Speak with our partnership team</p>
+                    <a href="mailto:partners@gpuaas.com" style="display: inline-block; padding: .8rem 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600;">Email →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="docs.html">Documentation</a></li></ul></div>
+            <div class="footer-section"><h4>Resources</h4><ul><li><a href="developers.html">Developers</a></li><li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li><li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li></ul></div>
+            <div class="footer-section"><h4>Company</h4><ul><li><a href="partners.html">Partners</a></li><li><a href="https://www.nvidia.com/en-us/partners/" target="_blank">NVIDIA Partners</a></li><li><a href="#">Contact</a></li></ul></div>
+            <div class="footer-section"><h4>Learn</h4><ul><li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning</a></li><li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 GPUaaS. All rights reserved.</p></div>
+    </footer>
+</body>
+</html>

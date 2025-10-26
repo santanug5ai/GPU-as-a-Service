@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - GPUaaS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a1a; background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
+        header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(102,126,234,0.5); }
+        nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.05); }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 8px 20px rgba(245,87,108,0.4); }
+        .logo-text { color: white; font-size: 2rem; font-weight: 800; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: all 0.3s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: #f5576c; transition: width 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #f5576c; }
+        .login-btn { background: linear-gradient(135deg, #f093fb, #f5576c); padding: 0.7rem 1.8rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(245,87,108,0.4); }
+        .login-btn::after { display: none; }
+        
+        .page-header { background: linear-gradient(135deg, #1e3c72, #2a5298, #7e22ce); color: white; padding: 80px 2rem; text-align: center; }
+        .page-header h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 1rem; animation: fadeInUp 0.6s ease; }
+        .page-header p { font-size: 1.3rem; color: rgba(255,255,255,0.95); animation: fadeInUp 0.6s ease 0.2s both; }
+        
+        section { padding: 80px 2rem; }
+        .section-content { max-width: 1200px; margin: 0 auto; }
+        
+        .feature-block { background: white; border-radius: 30px; padding: 3rem; margin-bottom: 3rem; box-shadow: 0 15px 40px rgba(0,0,0,0.15); animation: fadeInUp 0.6s ease; }
+        .feature-block h2 { font-size: 2.2rem; color: #667eea; margin-bottom: 1.5rem; font-weight: 800; }
+        .feature-block p { font-size: 1.1rem; color: #555; margin-bottom: 2rem; line-height: 1.8; }
+        
+        .video-embed { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); background: #000; margin-bottom: 2rem; }
+        .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        .feature-list { list-style: none; }
+        .feature-list li { padding: 0.8rem 0 0.8rem 2rem; position: relative; color: #333; font-size: 1.05rem; }
+        .feature-list li:before { content: '✓'; position: absolute; left: 0; color: #f5576c; font-weight: bold; font-size: 1.3rem; }
+        
+        .section-alt { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .section-title { text-align: center; font-size: 2.8rem; color: white; margin-bottom: 3rem; font-weight: 800; }
+        
+        footer { background: linear-gradient(135deg, #2d3561, #1f2a50); color: white; padding: 3rem 2rem 1rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-section h4 { font-size: 1.3rem; margin-bottom: 1rem; color: #f5576c; font-weight: 700; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.7rem; }
+        .footer-section a { color: #ccc; text-decoration: none; transition: all 0.3s; }
+        .footer-section a:hover { color: #f5576c; padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #999; }
+        
+        @media (max-width: 768px) { .nav-links { display: none; } .page-header h1 { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">⚡</div>
+                <span class="logo-text">GPUaaS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="partners.html">Partner Programs</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Powerful Features for AI Innovation</h1>
+        <p>Everything you need to train, deploy, and scale your AI models</p>
+    </section>
+
+    <section>
+        <div class="section-content">
+            <div class="feature-block">
+                <h2>Instant GPU Deployment</h2>
+                <p>Launch your GPU instances in under 60 seconds with our one-click deployment system. No complex configuration, no waiting in queues.</p>
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/KN8GG6SUqqw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <ul class="feature-list">
+                    <li>One-click deployment with pre-configured templates for PyTorch, TensorFlow, and JAX</li>
+                    <li>Jupyter Notebooks and VS Code environments ready out of the box</li>
+                    <li>Automatic dependency management and environment setup</li>
+                    <li>Auto-scaling capabilities based on your workload demands</li>
+                </ul>
+            </div>
+
+            <div class="feature-block">
+                <h2>Advanced Model Training</h2>
+                <p>Train large language models and computer vision models with our optimized infrastructure and distributed training support.</p>
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/wjZofJX0v4M" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <ul class="feature-list">
+                    <li>Multi-GPU and multi-node distributed training with automatic synchronization</li>
+                    <li>Automatic checkpointing and experiment tracking with MLflow integration</li>
+                    <li>TensorBoard and Weights & Biases support for real-time monitoring</li>
+                    <li>Mixed precision training (FP16, BF16) for faster convergence</li>
+                </ul>
+            </div>
+
+            <div class="feature-block">
+                <h2>Model Fine-tuning Made Easy</h2>
+                <p>Fine-tune pre-trained models from Hugging Face, OpenAI, or your own model zoo with our intuitive no-code interface.</p>
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/UU1WVnMk4E8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <ul class="feature-list">
+                    <li>Direct access to 100,000+ pre-trained models from Hugging Face Hub</li>
+                    <li>Support for LoRA, QLoRA, and full parameter fine-tuning methods</li>
+                    <li>Custom dataset upload with automatic preprocessing pipelines</li>
+                    <li>Automated hyperparameter optimization using Optuna and Ray Tune</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-alt">
+        <div class="section-content">
+            <h2 class="section-title">Learn More About GPU Technology</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: white; padding: 2rem; border-radius: 20px; text-align: center;">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">NVIDIA Data Center</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Explore NVIDIA's enterprise GPU solutions</p>
+                    <a href="https://www.nvidia.com/en-us/data-center/" target="_blank" style="display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600;">Visit →</a>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 20px; text-align: center;">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">Hugging Face</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Access thousands of AI models and datasets</p>
+                    <a href="https://huggingface.co/" target="_blank" style="display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600;">Visit →</a>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 20px; text-align: center;">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">PyTorch Tutorials</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Learn deep learning with PyTorch</p>
+                    <a href="https://pytorch.org/tutorials/" target="_blank" style="display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600;">Visit →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="docs.html">Documentation</a></li><li><a href="https://developer.nvidia.com/" target="_blank">NVIDIA Developer</a></li></ul></div>
+            <div class="footer-section"><h4>Resources</h4><ul><li><a href="developers.html">Developers</a></li><li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li><li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li><li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning</a></li></ul></div>
+            <div class="footer-section"><h4>Company</h4><ul><li><a href="partners.html">Partners</a></li><li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li><li><a href="https://www.kaggle.com/" target="_blank">Kaggle</a></li><li><a href="#">Contact</a></li></ul></div>
+            <div class="footer-section"><h4>Learn</h4><ul><li><a href="https://course.fast.ai/" target="_blank">Fast.ai</a></li><li><a href="https://paperswithcode.com/" target="_blank">Papers with Code</a></li><li><a href="https://www.nvidia.com/en-us/deep-learning-ai/" target="_blank">NVIDIA AI</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 GPUaaS. All rights reserved.</p></div>
+    </footer>
+</body>
+</html>

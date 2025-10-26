@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - GPUaaS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a1a; background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
+        header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(102,126,234,0.5); }
+        nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 8px 20px rgba(245,87,108,0.4); }
+        .logo-text { color: white; font-size: 2rem; font-weight: 800; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-links a:hover { color: #f5576c; }
+        .login-btn { background: linear-gradient(135deg, #f093fb, #f5576c); padding: 0.7rem 1.8rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(245,87,108,0.4); }
+        
+        .page-header { background: linear-gradient(135deg, #1e3c72, #2a5298, #7e22ce); color: white; padding: 80px 2rem; text-align: center; }
+        .page-header h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.3rem; color: rgba(255,255,255,0.95); }
+        
+        section { padding: 80px 2rem; }
+        .section-content { max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.8rem; color: white; margin-bottom: 1rem; font-weight: 800; }
+        .section-subtitle { text-align: center; font-size: 1.2rem; color: rgba(255,255,255,0.95); margin-bottom: 3rem; }
+        
+        .gpu-pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .gpu-card { background: white; border: 3px solid transparent; border-radius: 20px; padding: 2.5rem; transition: all 0.3s; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .gpu-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.25); border-color: #667eea; }
+        .popular-badge { position: absolute; top: 20px; right: 20px; background: linear-gradient(135deg, #f093fb, #f5576c); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 15px rgba(245,87,108,0.4); }
+        .gpu-name { font-size: 2rem; font-weight: 800; color: #667eea; margin-bottom: 0.5rem; }
+        .gpu-specs { background: linear-gradient(135deg, #f5f7fa, #e9ecef); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; }
+        .spec-item { display: flex; justify-content: space-between; padding: 0.5rem 0; color: #555; }
+        .price { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 1.5rem 0; }
+        .price-btn { width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.3); font-size: 1rem; }
+        .price-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(102,126,234,0.5); }
+        
+        .resource-links { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .link-card { background: white; padding: 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .link-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+        .link-card h3 { color: #667eea; margin-bottom: 1rem; font-size: 1.4rem; }
+        .link-card a { display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; margin-top: 1rem; }
+        
+        footer { background: linear-gradient(135deg, #2d3561, #1f2a50); color: white; padding: 3rem 2rem 1rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-section h4 { font-size: 1.3rem; margin-bottom: 1rem; color: #f5576c; font-weight: 700; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.7rem; }
+        .footer-section a { color: #ccc; text-decoration: none; transition: all 0.3s; }
+        .footer-section a:hover { color: #f5576c; padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #999; }
+        
+        @media (max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">⚡</div>
+                <span class="logo-text">GPUaaS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="partners.html">Partner Programs</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-header">
+        <h1>Simple, Transparent Pricing</h1>
+        <p>Pay only for what you use. No hidden fees, no long-term contracts required.</p>
+    </section>
+
+    <section style="background: linear-gradient(135deg, #fa709a, #fee140);">
+        <div class="section-content">
+            <h2 class="section-title">NVIDIA GPU Pricing</h2>
+            <p class="section-subtitle">Latest GPU models with flexible, pay-as-you-go pricing</p>
+
+            <div class="gpu-pricing-grid">
+                <div class="gpu-card">
+                    <div class="popular-badge">New Release</div>
+                    <h3 class="gpu-name">H200 SXM</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Ultimate performance for large-scale AI training</p>
+                    <div class="gpu-specs">
+                        <div class="spec-item"><span><strong>Memory:</strong></span><span>141GB HBM3e</span></div>
+                        <div class="spec-item"><span><strong>Bandwidth:</strong></span><span>4.8TB/s</span></div>
+                        <div class="spec-item"><span><strong>Performance:</strong></span><span>1979 TFLOPS</span></div>
+                    </div>
+                    <div class="price">$4.99<span style="font-size: 1.2rem;">/hr</span></div>
+                    <button class="price-btn">Launch Instance</button>
+                </div>
+
+                <div class="gpu-card">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3 class="gpu-name">H100 SXM</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Industry-leading for LLM training</p>
+                    <div class="gpu-specs">
+                        <div class="spec-item"><span><strong>Memory:</strong></span><span>80GB HBM3</span></div>
+                        <div class="spec-item"><span><strong>Bandwidth:</strong></span><span>3.35TB/s</span></div>
+                        <div class="spec-item"><span><strong>Performance:</strong></span><span>1513 TFLOPS</span></div>
+                    </div>
+                    <div class="price">$3.99<span style="font-size: 1.2rem;">/hr</span></div>
+                    <button class="price-btn">Launch Instance</button>
+                </div>
+
+                <div class="gpu-card">
+                    <h3 class="gpu-name">A100 SXM</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Versatile for training & inference</p>
+                    <div class="gpu-specs">
+                        <div class="spec-item"><span><strong>Memory:</strong></span><span>80GB HBM2e</span></div>
+                        <div class="spec-item"><span><strong>Bandwidth:</strong></span><span>2TB/s</span></div>
+                        <div class="spec-item"><span><strong>Performance:</strong></span><span>312 TFLOPS</span></div>
+                    </div>
+                    <div class="price">$2.49<span style="font-size: 1.2rem;">/hr</span></div>
+                    <button class="price-btn">Launch Instance</button>
+                </div>
+
+                <div class="gpu-card">
+                    <h3 class="gpu-name">L40S</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Optimized for inference</p>
+                    <div class="gpu-specs">
+                        <div class="spec-item"><span><strong>Memory:</strong></span><span>48GB GDDR6</span></div>
+                        <div class="spec-item"><span><strong>Bandwidth:</strong></span><span>864GB/s</span></div>
+                        <div class="spec-item"><span><strong>Performance:</strong></span><span>733 TFLOPS</span></div>
+                    </div>
+                    <div class="price">$1.79<span style="font-size: 1.2rem;">/hr</span></div>
+                    <button class="price-btn">Launch Instance</button>
+                </div>
+
+                <div class="gpu-card">
+                    <h3 class="gpu-name">A10G</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Cost-effective inference</p>
+                    <div class="gpu-specs">
+                        <div class="spec-item"><span><strong>Memory:</strong></span><span>24GB GDDR6</span></div>
+                        <div class="spec-item"><span><strong>Bandwidth:</strong></span><span>600GB/s</span></div>
+                        <div class="spec-item"><span><strong>Performance:</strong></span><span>125 TFLOPS</span></div>
+                    </div>
+                    <div class="price">$1.18<span style="font-size: 1.2rem;">/hr</span></div>
+                    <button class="price-btn">Launch Instance</button>
+                </div>
+
+                <div class="gpu-card">
+                    <h3 class="gpu-name">V100</h3>
+                    <p style="color: #666; margin-bottom: 1rem;">Budget-friendly for development</p>
+                    <div class="gpu-specs">
+                        <div class="spec-item"><span><strong>Memory:</strong></span><span>32GB HBM2</span></div>
+                        <div class="spec-item"><span><strong>Bandwidth:</strong></span><span>900GB/s</span></div>
+                        <div class="spec-item"><span><strong>Performance:</strong></span><span>125 TFLOPS</span></div>
+                    </div>
+                    <div class="price">$0.79<span style="font-size: 1.2rem;">/hr</span></div>
+                    <button class="price-btn">Launch Instance</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: white; margin-top: 3rem; font-size: 1.1rem;">
+                <strong>💰 Reserved Pricing:</strong> Save 20-40% with 1-month to 1-year reservations.
+            </p>
+        </div>
+    </section>
+
+    <section class="resource-links">
+        <div class="section-content">
+            <h2 class="section-title">Compare GPU Performance</h2>
+            <p class="section-subtitle">Explore detailed specifications and benchmarks</p>
+            <div class="link-grid">
+                <div class="link-card">
+                    <h3>NVIDIA GPU Specs</h3>
+                    <p style="color: #666;">Detailed technical specifications</p>
+                    <a href="https://www.nvidia.com/en-us/data-center/products/" target="_blank">View Specs →</a>
+                </div>
+                <div class="link-card">
+                    <h3>MLPerf Benchmarks</h3>
+                    <p style="color: #666;">Industry-standard AI benchmarks</p>
+                    <a href="https://mlcommons.org/en/training-normal-11/" target="_blank">View Results →</a>
+                </div>
+                <div class="link-card">
+                    <h3>GPU Comparison Tool</h3>
+                    <p style="color: #666;">Compare different GPU models</p>
+                    <a href="https://www.nvidia.com/en-us/data-center/gpu-comparison/" target="_blank">Compare GPUs →</a>
+                </div>
+                <div class="link-card">
+                    <h3>Cost Calculator</h3>
+                    <p style="color: #666;">Estimate your monthly costs</p>
+                    <a href="#" onclick="alert('Cost calculator coming soon!'); return false;">Calculate →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="docs.html">Documentation</a></li><li><a href="https://developer.nvidia.com/" target="_blank">NVIDIA Developer</a></li></ul></div>
+            <div class="footer-section"><h4>Resources</h4><ul><li><a href="developers.html">Developers</a></li><li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li><li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li></ul></div>
+            <div class="footer-section"><h4>Company</h4><ul><li><a href="partners.html">Partners</a></li><li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li><li><a href="#">Contact</a></li></ul></div>
+            <div class="footer-section"><h4>Learn</h4><ul><li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning</a></li><li><a href="https://course.fast.ai/" target="_blank">Fast.ai</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 GPUaaS. All rights reserved.</p></div>
+    </footer>
+</body>
+</html>

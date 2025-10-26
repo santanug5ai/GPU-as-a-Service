@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPUaaS - NVIDIA GPU Cloud | AI Infrastructure</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #1a1a1a;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            overflow-x: hidden;
+        }
+        
+        header { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        nav { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 1rem 2rem; 
+        }
+        
+        .logo { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover { transform: scale(1.05); }
+        
+        .logo-icon { 
+            width: 60px; 
+            height: 60px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: white; 
+            font-size: 30px; 
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+        }
+        
+        .logo-text { 
+            color: white; 
+            font-size: 2rem; 
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links { 
+            display: flex; 
+            list-style: none; 
+            gap: 2.5rem; 
+            align-items: center; 
+        }
+        
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #f5576c;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #f5576c; }
+        
+        .login-btn { 
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 0.7rem 1.8rem;
+            border-radius: 25px;
+            color: white !important;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+        .login-btn::after { display: none; }
+        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6); }
+        
+        .hero { 
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            color: white;
+            padding: 120px 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .hero-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            position: relative; 
+            z-index: 1; 
+        }
+        
+        .hero h1 { 
+            font-size: 3.8rem; 
+            margin-bottom: 1.5rem; 
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        .hero p { 
+            font-size: 1.4rem; 
+            margin-bottom: 2.5rem;
+            color: #e0e0ff;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons { 
+            display: flex; 
+            gap: 1.5rem; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            animation: fadeInUp 0.8s ease 0.4s both; 
+        }
+        
+        .cta-btn { 
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-primary { 
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+        .cta-primary:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 87, 108, 0.6);
+        }
+        
+        .cta-secondary { 
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+        .cta-secondary:hover { 
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+        
+        .video-section { 
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 25%, #f06595 50%, #cc5de8 75%, #845ef7 100%);
+        }
+        
+        .section-content { max-width: 1200px; margin: 0 auto; }
+        
+        .section-title { 
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 800;
+        }
+        
+        .section-subtitle { 
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 4rem;
+            font-weight: 500;
+        }
+        
+        .video-container { 
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .video-container iframe { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .features-overview { 
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 2.5rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        .feature-card { 
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            animation: slideInLeft 0.6s ease;
+        }
+        
+        .feature-card:hover { 
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+        
+        .feature-icon { 
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.8rem;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .feature-card h3 { 
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+        
+        .feature-card p { 
+            color: #666;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        .gpu-models { 
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        
+        .gpu-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        .gpu-card { 
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gpu-card:hover { 
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+        
+        .gpu-card h3 { 
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-weight: 800;
+        }
+        
+        .gpu-card .specs { 
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .gpu-card .price { 
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stats { 
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 3rem; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            text-align: center; 
+        }
+        
+        .stat-item h3 { 
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-item p { 
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .cta-section { 
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 { 
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 800;
+        }
+        
+        .cta-section p { 
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        footer { 
+            background: linear-gradient(135deg, #2d3561 0%, #1f2a50 100%);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+        
+        .footer-content { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 3rem; 
+            margin-bottom: 2rem; 
+        }
+        
+        .footer-section h4 { 
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #f5576c;
+            font-weight: 700;
+        }
+        
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.7rem; }
+        .footer-section a { 
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-section a:hover { 
+            color: #f5576c;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom { 
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">⚡</div>
+                <span class="logo-text">GPUaaS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="partners.html">Partner Programs</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Enterprise-Grade <span class="highlight">GPU Cloud</span> Infrastructure</h1>
+            <p>Power your AI and machine learning workloads with NVIDIA's latest GPUs. Deploy in seconds, scale instantly, and pay only for what you use.</p>
+            <div class="cta-buttons">
+                <a href="pricing.html" class="cta-btn cta-primary">Get Started Free →</a>
+                <a href="docs.html" class="cta-btn cta-secondary">View Documentation</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="section-content">
+            <h2 class="section-title">See GPUaaS in Action</h2>
+            <p class="section-subtitle">Watch how NVIDIA GPUs accelerate AI and machine learning workloads</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/aircAruvnKk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-overview">
+        <div class="section-content">
+            <h2 class="section-title">Why Choose GPUaaS?</h2>
+            <p class="section-subtitle">Everything you need to accelerate your AI development and deployment</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Instant Deployment</h3>
+                    <p>Launch GPU instances in under 60 seconds. No complex setup, no waiting queues. Start training immediately with pre-configured templates.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Flexible Pricing</h3>
+                    <p>Pay-as-you-go or save up to 40% with reserved instances. Transparent pricing with no hidden fees or long-term contracts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Pre-configured Templates</h3>
+                    <p>PyTorch, TensorFlow, JAX, Jupyter, and VS Code ready-to-use. Deploy your favorite ML frameworks with one click.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>SOC 2 Type II certified with end-to-end encryption, private networks, and compliance-ready infrastructure for regulated industries.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Monitoring</h3>
+                    <p>Track GPU utilization, memory usage, training metrics, and costs in real-time with our intuitive monitoring dashboard.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global Availability</h3>
+                    <p>Deploy across 15+ regions worldwide for low-latency access, data sovereignty, and disaster recovery capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gpu-models">
+        <div class="section-content">
+            <h2 class="section-title">Latest NVIDIA GPU Models</h2>
+            <p class="section-subtitle">Access the most powerful GPUs for AI, machine learning, and deep learning</p>
+            <div class="gpu-grid">
+                <div class="gpu-card">
+                    <h3>H200 SXM</h3>
+                    <p class="specs">141GB HBM3e Memory<br>4.8TB/s Bandwidth<br>Latest Hopper Architecture</p>
+                    <p class="price">From $4.99/hr</p>
+                </div>
+                <div class="gpu-card">
+                    <h3>H100 SXM</h3>
+                    <p class="specs">80GB HBM3 Memory<br>3.35TB/s Bandwidth<br>Transformer Engine</p>
+                    <p class="price">From $3.99/hr</p>
+                </div>
+                <div class="gpu-card">
+                    <h3>A100 SXM</h3>
+                    <p class="specs">80GB HBM2e Memory<br>2TB/s Bandwidth<br>Multi-Instance GPU</p>
+                    <p class="price">From $2.49/hr</p>
+                </div>
+                <div class="gpu-card">
+                    <h3>L40S</h3>
+                    <p class="specs">48GB GDDR6 Memory<br>864GB/s Bandwidth<br>Ada Lovelace Architecture</p>
+                    <p class="price">From $1.79/hr</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="section-content">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10,000+</h3>
+                    <p>Active Users</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>Uptime SLA</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>GPU Models</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="section-content">
+            <h2>Ready to Accelerate Your AI Development?</h2>
+            <p>Join thousands of developers and enterprises using GPUaaS</p>
+            <div class="cta-buttons">
+                <a href="pricing.html" class="cta-btn cta-primary">Start Free Trial →</a>
+                <a href="docs.html" class="cta-btn cta-secondary">Read Documentation</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="https://developer.nvidia.com/" target="_blank">NVIDIA Developer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="developers.html">Developers</a></li>
+                    <li><a href="https://www.nvidia.com/en-us/data-center/" target="_blank">GPU Technology</a></li>
+                    <li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li>
+                    <li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="partners.html">Partners</a></li>
+                    <li><a href="https://www.nvidia.com/en-us/about-nvidia/" target="_blank">About NVIDIA</a></li>
+                    <li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning Courses</a></li>
+                    <li><a href="https://course.fast.ai/" target="_blank">Fast.ai</a></li>
+                    <li><a href="https://www.kaggle.com/" target="_blank">Kaggle</a></li>
+                    <li><a href="https://paperswithcode.com/" target="_blank">Papers with Code</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 GPUaaS. All rights reserved. Powered by NVIDIA GPU Technology.</p>
+        </div>
+    </footer>
+</body>
+</html>

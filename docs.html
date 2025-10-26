@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - GPUaaS</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a1a; }
+        header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(102,126,234,.5); }
+        nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+        .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 8px 20px rgba(245,87,108,.4); }
+        .logo-text { color: white; font-size: 2rem; font-weight: 800; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: all .3s; }
+        .nav-links a:hover { color: #f5576c; }
+        .login-btn { background: linear-gradient(135deg, #f093fb, #f5576c); padding: .7rem 1.8rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(245,87,108,.4); }
+        
+        .page-container { display: flex; min-height: calc(100vh - 80px); background: linear-gradient(135deg, #e0c3fc, #8ec5fc); }
+        .sidebar { width: 280px; background: white; padding: 2rem; position: sticky; top: 80px; height: calc(100vh - 80px); overflow-y: auto; box-shadow: 4px 0 10px rgba(0,0,0,.1); }
+        .sidebar h3 { font-size: 1.1rem; margin-bottom: 1rem; color: #667eea; font-weight: 700; }
+        .sidebar-menu { list-style: none; margin-bottom: 2rem; }
+        .sidebar-menu a { display: block; padding: .7rem 1rem; color: #666; text-decoration: none; border-radius: 8px; transition: all .3s; }
+        .sidebar-menu a:hover, .sidebar-menu a.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        
+        .main-content { flex: 1; padding: 3rem; max-width: 900px; }
+        .doc-header { border-bottom: 3px solid #667eea; padding-bottom: 2rem; margin-bottom: 3rem; }
+        .doc-header h1 { font-size: 2.8rem; margin-bottom: 1rem; color: #667eea; font-weight: 800; }
+        .doc-section { margin-bottom: 3rem; background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.1); }
+        .doc-section h2 { font-size: 2rem; margin-bottom: 1rem; color: #667eea; font-weight: 700; }
+        
+        .code-block { background: #1e1e1e; border-radius: 15px; padding: 1.5rem; margin: 1.5rem 0; overflow-x: auto; border: 3px solid #667eea; }
+        .code-block pre { color: #d4d4d4; font-family: 'Courier New', monospace; font-size: .9rem; line-height: 1.6; margin: 0; }
+        
+        .info-box { padding: 1.5rem; border-radius: 15px; margin: 1.5rem 0; border-left: 5px solid #667eea; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); }
+        
+        .external-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .ext-link { display: block; padding: 1rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; border-radius: 15px; text-align: center; font-weight: 600; transition: all .3s; }
+        .ext-link:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(102,126,234,.5); }
+        
+        footer { background: linear-gradient(135deg, #2d3561, #1f2a50); color: white; padding: 3rem 2rem 1rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-section h4 { font-size: 1.3rem; margin-bottom: 1rem; color: #f5576c; font-weight: 700; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: .7rem; }
+        .footer-section a { color: #ccc; text-decoration: none; transition: all .3s; }
+        .footer-section a:hover { color: #f5576c; padding-left: 5px; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.1); color: #999; }
+        
+        @media (max-width: 968px) { .nav-links { display: none; } .page-container { flex-direction: column; } .sidebar { width: 100%; position: relative; height: auto; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">⚡</div>
+                <span class="logo-text">GPUaaS</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="features.html">Features</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="developers.html">Developers</a></li>
+                <li><a href="partners.html">Partner Programs</a></li>
+                <li><a href="docs.html">Docs</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-container">
+        <aside class="sidebar">
+            <h3>Getting Started</h3>
+            <ul class="sidebar-menu">
+                <li><a href="#introduction" class="active">Introduction</a></li>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#authentication">Authentication</a></li>
+            </ul>
+
+            <h3>Core Concepts</h3>
+            <ul class="sidebar-menu">
+                <li><a href="#instances">GPU Instances</a></li>
+                <li><a href="#storage">Storage</a></li>
+                <li><a href="#monitoring">Monitoring</a></li>
+            </ul>
+
+            <h3>API Reference</h3>
+            <ul class="sidebar-menu">
+                <li><a href="#rest-api">REST API</a></li>
+                <li><a href="#sdks">SDKs</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="doc-header">
+                <h1>GPUaaS Documentation</h1>
+                <p>Comprehensive guides and API reference for building AI applications</p>
+            </div>
+
+            <section class="doc-section" id="introduction">
+                <h2>Introduction</h2>
+                <p>Welcome to GPUaaS! This documentation will help you get started with our GPU cloud platform. Deploy NVIDIA GPUs for AI training, inference, and more.</p>
+                
+                <div class="external-links">
+                    <a href="https://docs.nvidia.com/cuda/" target="_blank" class="ext-link">CUDA Docs →</a>
+                    <a href="https://pytorch.org/docs/" target="_blank" class="ext-link">PyTorch Docs →</a>
+                    <a href="https://www.tensorflow.org/guide" target="_blank" class="ext-link">TensorFlow Guide →</a>
+                    <a href="https://huggingface.co/docs" target="_blank" class="ext-link">HF Docs →</a>
+                </div>
+            </section>
+
+            <section class="doc-section" id="quick-start">
+                <h2>Quick Start Guide</h2>
+                
+                <h3>Step 1: Install the SDK</h3>
+                <div class="code-block">
+                    <pre>pip install gpuaas</pre>
+                </div>
+
+                <h3>Step 2: Get Your API Key</h3>
+                <p>Navigate to your dashboard and generate an API key from Settings.</p>
+
+                <div class="info-box">
+                    <strong>💡 Tip:</strong> Store your API key securely and never commit it to version control.
+                </div>
+
+                <h3>Step 3: Launch Your First Instance</h3>
+                <div class="code-block">
+                    <pre>from gpuaas import Client
+
+client = Client(api_key="your-api-key")
+
+# Launch a GPU instance
+instance = client.instances.create(
+    gpu_type="A100",
+    image="pytorch:latest",
+    region="us-east-1"
+)
+
+print(f"Instance created: {instance.id}")</pre>
+                </div>
+            </section>
+
+            <section class="doc-section" id="instances">
+                <h2>GPU Instances</h2>
+                <p>GPU instances are virtual machines with NVIDIA GPUs for AI workloads. Each instance includes CPU, RAM, storage, and network resources.</p>
+
+                <h3>Available GPU Types</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: .5rem 0; border-bottom: 1px solid #eee;"><strong>H200 SXM:</strong> 141GB HBM3e - For large-scale training</li>
+                    <li style="padding: .5rem 0; border-bottom: 1px solid #eee;"><strong>H100 SXM:</strong> 80GB HBM3 - LLM training</li>
+                    <li style="padding: .5rem 0; border-bottom: 1px solid #eee;"><strong>A100 SXM:</strong> 80GB HBM2e - Training & inference</li>
+                    <li style="padding: .5rem 0;"><strong>L40S:</strong> 48GB GDDR6 - Inference</li>
+                </ul>
+            </section>
+
+            <section class="doc-section">
+                <h2>Additional Resources</h2>
+                <div class="external-links">
+                    <a href="https://developer.nvidia.com/deep-learning" target="_blank" class="ext-link">NVIDIA DL →</a>
+                    <a href="https://www.nvidia.com/en-us/deep-learning-ai/education/" target="_blank" class="ext-link">NVIDIA Training →</a>
+                    <a href="https://github.com/topics/gpu-computing" target="_blank" class="ext-link">GPU on GitHub →</a>
+                    <a href="https://paperswithcode.com/" target="_blank" class="ext-link">Papers →</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="docs.html">Documentation</a></li></ul></div>
+            <div class="footer-section"><h4>Resources</h4><ul><li><a href="developers.html">Developers</a></li><li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li><li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li></ul></div>
+            <div class="footer-section"><h4>Company</h4><ul><li><a href="partners.html">Partners</a></li><li><a href="https://www.nvidia.com/" target="_blank">NVIDIA</a></li><li><a href="#">Contact</a></li></ul></div>
+            <div class="footer-section"><h4>Learn</h4><ul><li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning</a></li><li><a href="https://course.fast.ai/" target="_blank">Fast.ai</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 GPUaaS. All rights reserved.</p></div>
+    </footer>
+</body>
+</html>
