@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing - GPUaaS</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1a1a1a; background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: gradientShift 15s ease infinite; }
-        header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(102,126,234,0.5); }
+        header { background: linear-gradient(135deg, #667eea, #764ba2); padding: 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(102,126,234,.5); }
         nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
         .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 8px 20px rgba(245,87,108,0.4); }
+        .logo-icon { width: 60px; height: 60px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; box-shadow: 0 8px 20px rgba(245,87,108,.4); }
         .logo-text { color: white; font-size: 2rem; font-weight: 800; }
         .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 600; transition: all .3s; }
         .nav-links a:hover { color: #f5576c; }
-        .login-btn { background: linear-gradient(135deg, #f093fb, #f5576c); padding: 0.7rem 1.8rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(245,87,108,0.4); }
+        .login-btn { background: linear-gradient(135deg, #f093fb, #f5576c); padding: 0.7rem 1.8rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(245,87,108,.4); }
         
         .page-header { background: linear-gradient(135deg, #1e3c72, #2a5298, #7e22ce); color: white; padding: 80px 2rem; text-align: center; }
         .page-header h1 { font-size: 3.2rem; font-weight: 800; margin-bottom: 1rem; }
@@ -69,7 +68,7 @@
                 <li><a href="features.html">Features</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="developers.html">Developers</a></li>
-                <li><a href="partners.html">Partner Programs</a></li>
+                <li><a href="partners.html">Partners</a></li>
                 <li><a href="docs.html">Docs</a></li>
                 <li><a href="login.html" class="login-btn">Login</a></li>
             </ul>
@@ -78,13 +77,13 @@
 
     <section class="page-header">
         <h1>Simple, Transparent Pricing</h1>
-        <p>Pay only for what you use. No hidden fees, no long-term contracts required.</p>
+        <p>Pay only for what you use. No hidden fees.</p>
     </section>
 
     <section style="background: linear-gradient(135deg, #fa709a, #fee140);">
         <div class="section-content">
             <h2 class="section-title">NVIDIA GPU Pricing</h2>
-            <p class="section-subtitle">Latest GPU models with flexible, pay-as-you-go pricing</p>
+            <p class="section-subtitle">Latest GPU models with flexible pay-as-you-go pricing</p>
 
             <div class="gpu-pricing-grid">
                 <div class="gpu-card">
@@ -115,7 +114,7 @@
 
                 <div class="gpu-card">
                     <h3 class="gpu-name">A100 SXM</h3>
-                    <p style="color: #666; margin-bottom: 1rem;">Versatile for training & inference</p>
+                    <p style="color: #666; margin-bottom: 1rem;">Versatile for training and inference</p>
                     <div class="gpu-specs">
                         <div class="spec-item"><span><strong>Memory:</strong></span><span>80GB HBM2e</span></div>
                         <div class="spec-item"><span><strong>Bandwidth:</strong></span><span>2TB/s</span></div>
@@ -174,7 +173,7 @@
             <p class="section-subtitle">Explore detailed specifications and benchmarks</p>
             <div class="link-grid">
                 <div class="link-card">
-                    <h3>NVIDIA GPU Specs</h3>
+                    <h3>NVIDIA Specs</h3>
                     <p style="color: #666;">Detailed technical specifications</p>
                     <a href="https://www.nvidia.com/en-us/data-center/products/" target="_blank">View Specs →</a>
                 </div>
@@ -184,14 +183,14 @@
                     <a href="https://mlcommons.org/en/training-normal-11/" target="_blank">View Results →</a>
                 </div>
                 <div class="link-card">
-                    <h3>GPU Comparison Tool</h3>
+                    <h3>GPU Database</h3>
                     <p style="color: #666;">Compare different GPU models</p>
-                    <a href="https://www.nvidia.com/en-us/data-center/gpu-comparison/" target="_blank">Compare GPUs →</a>
+                    <a href="https://www.techpowerup.com/gpu-specs/" target="_blank">Compare GPUs →</a>
                 </div>
                 <div class="link-card">
-                    <h3>Cost Calculator</h3>
-                    <p style="color: #666;">Estimate your monthly costs</p>
-                    <a href="#" onclick="alert('Cost calculator coming soon!'); return false;">Calculate →</a>
+                    <h3>CUDA Documentation</h3>
+                    <p style="color: #666;">Official CUDA programming guide</p>
+                    <a href="https://docs.nvidia.com/cuda/" target="_blank">Read Docs →</a>
                 </div>
             </div>
         </div>
@@ -199,12 +198,12 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="docs.html">Documentation</a></li><li><a href="https://developer.nvidia.com/" target="_blank">NVIDIA Developer</a></li></ul></div>
-            <div class="footer-section"><h4>Resources</h4><ul><li><a href="developers.html">Developers</a></li><li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li><li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li></ul></div>
-            <div class="footer-section"><h4>Company</h4><ul><li><a href="partners.html">Partners</a></li><li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li><li><a href="#">Contact</a></li></ul></div>
-            <div class="footer-section"><h4>Learn</h4><ul><li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning</a></li><li><a href="https://course.fast.ai/" target="_blank">Fast.ai</a></li></ul></div>
+            <div class="footer-section"><h4>Product</h4><ul><li><a href="features.html">Features</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="docs.html">Documentation</a></li></ul></div>
+            <div class="footer-section"><h4>Open Source</h4><ul><li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li><li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li><li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li></ul></div>
+            <div class="footer-section"><h4>Community</h4><ul><li><a href="partners.html">Partners</a></li><li><a href="https://www.kaggle.com/" target="_blank">Kaggle</a></li></ul></div>
+            <div class="footer-section"><h4>Learn</h4><ul><li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning AI</a></li><li><a href="https://course.fast.ai/" target="_blank">Fast.ai</a></li></ul></div>
         </div>
-        <div class="footer-bottom"><p>© 2025 GPUaaS. All rights reserved.</p></div>
+        <div class="footer-bottom"><p>GPUaaS - Built with Open Source Technologies</p></div>
     </footer>
 </body>
 </html>
