@@ -8,9 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
         
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; 
@@ -272,7 +270,6 @@
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            animation: slideInLeft 0.6s ease;
         }
         
         .feature-card:hover { 
@@ -471,7 +468,7 @@
                 <li><a href="features.html">Features</a></li>
                 <li><a href="pricing.html">Pricing</a></li>
                 <li><a href="developers.html">Developers</a></li>
-                <li><a href="partners.html">Partner Programs</a></li>
+                <li><a href="partners.html">Partners</a></li>
                 <li><a href="docs.html">Docs</a></li>
                 <li><a href="login.html" class="login-btn">Login</a></li>
             </ul>
@@ -493,6 +490,9 @@
         <div class="section-content">
             <h2 class="section-title">See GPUaaS in Action</h2>
             <p class="section-subtitle">Watch how NVIDIA GPUs accelerate AI and machine learning workloads</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/aircAruvnKk" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
     </section>
 
@@ -509,7 +509,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">💰</div>
                     <h3>Flexible Pricing</h3>
-                    <p>Pay-as-you-go or save up to 40% with reserved instances. Transparent pricing with no hidden fees or long-term contracts.</p>
+                    <p>Pay-as-you-go or save up to 40% with reserved instances. Transparent pricing with no hidden fees.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔧</div>
@@ -519,7 +519,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
                     <h3>Enterprise Security</h3>
-                    <p>SOC 2 Type II certified with end-to-end encryption, private networks, and compliance-ready infrastructure for regulated industries.</p>
+                    <p>End-to-end encryption, private networks, and secure infrastructure for regulated industries.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
@@ -529,7 +529,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">🌐</div>
                     <h3>Global Availability</h3>
-                    <p>Deploy across 15+ regions worldwide for low-latency access, data sovereignty, and disaster recovery capabilities.</p>
+                    <p>Deploy across 15+ regions worldwide for low-latency access and disaster recovery capabilities.</p>
                 </div>
             </div>
         </div>
@@ -610,35 +610,35 @@
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Resources</h4>
+                <h4>Open Source</h4>
                 <ul>
-                    <li><a href="developers.html">Developers</a></li>
-                    <li><a href="https://www.nvidia.com/en-us/data-center/" target="_blank">GPU Technology</a></li>
                     <li><a href="https://pytorch.org/" target="_blank">PyTorch</a></li>
                     <li><a href="https://www.tensorflow.org/" target="_blank">TensorFlow</a></li>
+                    <li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li>
+                    <li><a href="https://github.com/kubernetes/kubernetes" target="_blank">Kubernetes</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Company</h4>
+                <h4>Community</h4>
                 <ul>
                     <li><a href="partners.html">Partners</a></li>
-                    <li><a href="https://www.nvidia.com/en-us/about-nvidia/" target="_blank">About NVIDIA</a></li>
-                    <li><a href="https://huggingface.co/" target="_blank">Hugging Face</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="https://www.kaggle.com/" target="_blank">Kaggle</a></li>
+                    <li><a href="https://paperswithcode.com/" target="_blank">Papers with Code</a></li>
+                    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Learn</h4>
                 <ul>
-                    <li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning Courses</a></li>
+                    <li><a href="https://www.deeplearning.ai/" target="_blank">Deep Learning AI</a></li>
                     <li><a href="https://course.fast.ai/" target="_blank">Fast.ai</a></li>
-                    <li><a href="https://www.kaggle.com/" target="_blank">Kaggle</a></li>
-                    <li><a href="https://paperswithcode.com/" target="_blank">Papers with Code</a></li>
+                    <li><a href="https://www.coursera.org/courses?query=machine%20learning" target="_blank">Coursera ML</a></li>
+                    <li><a href="https://www.youtube.com/user/keeroyz" target="_blank">AI Tutorials</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 GPUaaS. All rights reserved. Powered by NVIDIA GPU Technology.</p>
+            <p>GPUaaS - Enterprise GPU Cloud Infrastructure | Built with Open Source Technologies</p>
         </div>
     </footer>
 </body>
